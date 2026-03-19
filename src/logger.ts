@@ -11,7 +11,7 @@ function format(level: string, module: string, message: string): string {
     hour: '2-digit', minute: '2-digit', second: '2-digit',
     fractionalSecondDigits: 3,
     hour12: false,
-  }).replace(' ', 'T') + '+03:00';
+  }).replace(' ', 'T').replace(',', '.') + '+03:00';
   return `[${timestamp}] [${level.toUpperCase()}] [${module}] ${message}`;
 }
 
