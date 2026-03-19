@@ -5,7 +5,13 @@ const LEVELS = { debug: 0, info: 1, warn: 2, error: 3 } as const;
 const currentLevel = LEVELS[config.logLevel] ?? LEVELS.info;
 
 function format(level: string, module: string, message: string): string {
-  const timestamp = new Date().toISOString();
+  const timestamp = new Date().toLocaleString('sv-SE', {
+    timeZone: 'Europe/Istanbul',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    fractionalSecondDigits: 3,
+    hour12: false,
+  }).replace(' ', 'T') + '+03:00';
   return `[${timestamp}] [${level.toUpperCase()}] [${module}] ${message}`;
 }
 
